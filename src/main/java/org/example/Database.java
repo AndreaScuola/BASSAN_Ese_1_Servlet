@@ -23,7 +23,6 @@ public class Database {
     }
 
     public List<Utente> selectAll(){
-
         List<Utente> utenti = new ArrayList<>();
         String query = "SELECT * FROM utenti";
 
