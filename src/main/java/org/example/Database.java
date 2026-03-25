@@ -1,5 +1,6 @@
 package org.example;
 
+import javax.xml.crypto.Data;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,13 +8,18 @@ import java.util.List;
 public class Database {
     private static Database instance;
     private static Connection connection;
-
     private final String url = "jdbc:mysql://localhost:3306/db_servlet1";
     private final String user = "root";
     private final String password = "";
 
     private Database() throws SQLException {
-        connection = DriverManager.getConnection(url, user, password);
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        this.connection = DriverManager.getConnection(url, user, password);
     }
 
     public static Database getInstance() throws SQLException {
